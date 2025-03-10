@@ -1,17 +1,20 @@
 package com.onkar;
 
-import jakarta.persistence.*;
+import jakarta.persistence.Entity;
+import jakarta.persistence.Id;
+import jakarta.persistence.ManyToMany;
+
+import java.util.List;
 
 @Entity
-@Table(name="alen_table")
 public class Alien {
 
     @Id
     private int aid;
-    @Column(name="Alien_name")
     private String aname;
-    @Transient
     private String tech;
+    @ManyToMany
+    private List<Laptop> laptop;
 
     public int getAid() {
         return aid;
@@ -37,12 +40,21 @@ public class Alien {
         this.tech = tech;
     }
 
+    public List<Laptop> getLaptop() {
+        return laptop;
+    }
+
+    public void setLaptop(List<Laptop> laptop) {
+        this.laptop = laptop;
+    }
+
     @Override
     public String toString() {
         return "Alien{" +
                 "aid=" + aid +
                 ", aname='" + aname + '\'' +
                 ", tech='" + tech + '\'' +
+                ", laptop=" + laptop +
                 '}';
     }
 }
